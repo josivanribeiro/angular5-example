@@ -1,0 +1,106 @@
+<div class="panel-heading padding-top-0 padding-bottom-0 ng-scope">
+    <div class="row ng-scope">
+        <div class="col-md-5">
+          <h4 class="painel-title ng-binding">
+            <ng-container *ngIf="isAdd">
+                Incluir Apontamento
+            </ng-container>
+            <ng-container *ngIf="isDetails">
+                Exibir Apontamento
+            </ng-container>
+            <ng-container *ngIf="isEdit">
+                Alterar Apontamento
+            </ng-container>
+          </h4>
+        </div>
+        <div *ngIf="isDetails" class="col-md-7 padding-top-15">
+            <div class="btn-group pull-right padding-5">                          
+                <a class="btn btn-default" [routerLink]="['/dashboard/apontamentos']">
+                  <i class="fa fa-arrow-left fa-fw"></i>
+                  <span class="ng-binding">Voltar</span>
+                </a>              
+                <a class="btn btn-default" [routerLink]="['edit', id]">
+                  <i class="fa fa-pencil-square-o fa-fw"></i>
+                  <span class="ng-binding">Alterar</span>
+                </a>
+                <a class="btn btn-default" (click)="onDeleteApontamento()">
+                  <i class="fa fa-times fa-fw"></i>
+                  <span class="ng-binding">Excluir</span>
+                </a>
+                <a class="btn btn-default" [routerLink]="['historico', 'apontamento', id, nome.value]">
+                    <i class="fa fa-history fa-fw"></i>
+                    Histórico
+                </a>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<div class="panel-body ng-scope">
+    <form novalidate [formGroup]="apontamentoForm">        
+        <div class="row ng-scope">
+            <div class="form-group col-md-2">
+                <label for="txtCodigo">&nbsp;&nbsp;Código </label>
+                <input id="txtCodigo" class="form-control" type="text" value="{{id}}" readonly>
+            </div>            
+            <div class="form-group col-md-12" 
+                [ngClass]="{
+                'has-danger': nome.invalid && (nome.dirty || nome.touched),
+                'has-success': nome.valid && (nome.dirty || nome.touched)
+                }">
+                <label for="txtNome">&nbsp;&nbsp;Nome *</label>                
+                <input id="txtNome" (keyup)="setUpperCase($event)" class="form-control" type="text" maxlength="100" formControlName="nome" required trim="blur" [readonly]="isDetails">
+                <div class="form-control-feedback" style="width: 100%; position: relative; text-align:left;" *ngIf="nome.errors && (nome.dirty || nome.touched)">
+                    <p *ngIf="nome.errors.required">É necessário preencher o campo Nome.</p>
+                </div>                
+            </div>      
+            <div class="form-group col-md-12" 
+                [ngClass]="{
+                'has-danger': descricao.invalid && (descricao.dirty || descricao.touched),
+                'has-success': descricao.valid && (descricao.dirty || descricao.touched)
+                }">                
+                <label for="txtDescricao">&nbsp;&nbsp;Descrição *</label>
+                <textarea id="txtDescricao" (keyup)="setUpperCase($event)" class="form-control" formControlName="descricao" required [attr.maxLength]="500" trim="blur" [readonly]="isDetails"></textarea>
+                <div class="form-control-feedback" style="width: 100%; position: relative; text-align:left;" *ngIf="descricao.errors && (descricao.dirty || descricao.touched)">
+                    <p *ngIf="descricao.errors.required">É necessário preencher o campo Descrição.</p>
+                </div>                
+            </div>
+            <div class="form-group col-md-2" *ngIf="isDetails || isEdit">
+                <label for="selectSituacao" style="margin-left: 10px;">Situação *</label>
+                <select class="form-control" id="selectSituacao" [disabled]="isDetails">
+                    <option *ngFor="let situacao of situacoes" value="{{situacao.value}}" (click)="onClickSituacao(situacao.value)" [selected]="situacao.value == selectedSituacao.value">{{situacao.description}}</option>
+                </select>
+            </div> 
+        </div>
+    </form>
+</div>
+<div *ngIf="isAdd || isEdit" class="panel-heading padding-top-0 padding-bottom-15 ng-scope">
+    <div class="col-md-12 padding-top-15 padding-right-0">
+        <div class="btn-group padding-2" style="width:100%;">
+            <ng-container *ngIf="isAdd">
+                <a class="btn btn-primary pull-right" style="margin-left:10px;" (click)="onInsertApontamento()">
+                    <i class="fa fa-save fa-fw"></i>
+                    <span class="ng-binding">Salvar</span>
+                </a>
+            </ng-container>
+            <ng-container *ngIf="isEdit">
+                <a class="btn btn-primary pull-right" style="margin-left:10px;" (click)="onUpdateApontamento()">
+                    <i class="fa fa-save fa-fw"></i>
+                    <span class="ng-binding">Salvar</span>
+                </a>
+            </ng-container>
+            <ng-container *ngIf="isAdd">
+                <a class="btn btn-default pull-right" [routerLink]="['/dashboard/apontamentos']">
+                    <i class="fa fa-reply fa-fw"></i>
+                    <span class="ng-binding">Cancelar</span>
+                </a>
+            </ng-container>
+            <ng-container *ngIf="isEdit">
+                <a class="btn btn-default pull-right" [routerLink]="['/dashboard/apontamentos/details', id]">
+                    <i class="fa fa-reply fa-fw"></i>
+                    <span class="ng-binding">Cancelar</span>
+                </a>
+            </ng-container>            
+        </div>
+    </div>
+</div>

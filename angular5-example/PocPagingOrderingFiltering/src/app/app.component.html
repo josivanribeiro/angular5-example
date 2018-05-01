@@ -1,0 +1,36 @@
+
+<div>
+  <h3>{{title}}</h3>  
+  <nav class="navbar">
+      <input class="form-control" type="text" name="search" [(ngModel)]="filter">
+  </nav>
+  <table border="1">
+      <thead>
+        <tr>
+          <th (click)="sort('name')">Name
+              <span class="glyphicon sort-icon" *ngIf="key =='name'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>          
+          <th (click)="sort('age')">Age
+              <span class="glyphicon sort-icon" *ngIf="key =='age'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>
+        </tr>
+      </thead>          
+      <tbody>                     
+          <tr *ngFor="let l of list | orderBy: key : reverse | filter:filter">
+            <td>{{l.name}}</td>
+            <td>{{l.age}}</td>
+          </tr>
+      </tbody>
+  </table>  
+  <p class="pagination">
+    <label>Exibindo {{getInitialRowNumber()}} até {{getFinalRowNumber()}} de {{pagination.totalRows}} registros</label><br/><br/>
+    <button [disabled] ="pagination.currentPage == 1" (click)="performSearch(1)">Primeiro</button>
+    <button [disabled] ="pagination.currentPage == 1" (click)="performSearch(pagination.currentPage - 1)">Anterior</button>
+        <span>Página <input #txtCurrentPage type="text" value="{{pagination.currentPage}}" maxlength="5"/> / {{ totalPages }}</span>
+    <button [disabled] ="pagination.currentPage >= pagination.totalPages" (click)="performSearch(txtCurrentPage.value)">Ir</button>
+    <button [disabled] ="pagination.currentPage >= pagination.totalPages" (click) ="performSearch(pagination.currentPage + 1)">Próximo</button>
+    <button [disabled] ="pagination.currentPage == pagination.totalPages" (click) ="performSearch(pagination.totalPages)">Último</button>
+  </p>
+</div>
+
+

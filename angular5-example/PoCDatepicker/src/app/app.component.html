@@ -1,0 +1,23 @@
+
+
+<div style="padding:20px;">
+    <p>Datepicker in Portuguese</p>
+
+    <form class="form-inline">
+        <div class="form-group">
+        <div class="input-group">
+            <input class="form-control" placeholder="dd/mm/yyyy" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-append">
+            <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                <img src="../assets/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+            </button>
+            </div>
+        </div>
+        </div>
+    </form>
+    
+    <hr/>
+    <pre>Model: {{ model | json }}</pre>
+</div>
+  
+  

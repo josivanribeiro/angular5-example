@@ -1,0 +1,40 @@
+{
+    "data" : [
+        {
+            "id": "li_monitoramentos",
+            "label": "Monitoramentos",
+            "iclass": "fa fa-barcode fa-2x",
+            "routerLink": "#",
+            "subitems": [
+                {                
+                "id": "li_monitoramentos_subitem2",
+                "label": "Monitoramentos subitem 2",
+                "iclass": "fa fa-shopping-bag",
+                "routerLink": "#",
+                "subsubitems": [
+                    {
+                        "isheader": true,
+                        "id": "li_monitoramentos_subsubitem2.1",
+                        "label": "header",
+                        "iclass": "",
+                        "liclass": "dropdown-header",
+                        "routerLink": "#",
+                        "textbottom": ""
+                    },
+                    {
+                    "isheader": false,
+                    "id": "li_monitoramentos_subsubitem2.2",
+                    "label": "Monitoramentos subsubitem2.2",
+                    "iclass": "fa fa-shopping-bag",
+                    "liclass": "",
+                    "routerLink": "#",
+                    "textbottom": "(GRP:MNTTO.list)"
+                }]
+            }]
+        }
+    ]
+}
+
+
+
+

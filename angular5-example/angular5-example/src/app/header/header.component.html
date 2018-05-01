@@ -1,0 +1,130 @@
+<div id="wrapHeader" class="row ng-scope">
+        <nav class="navbar navbar-inverse margin-bottom-0 ng-scope">
+            <div class="container">
+                <!-- ngInclude:  -->
+                <div id="wMenuh" class="col-md-12 ng-scope">
+                  <!-- Brand and toggle get grouped for better mobile display -->
+                  <div class="navbar-header ng-scope">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu_mobile" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand navbar-brand-img" href="">
+                        <img alt="  Caixa" src="assets/images/logo-caixa-x.png">
+                    </a>
+                    <a class="navbar-brand navbar-brand-sigla" href="">SIGDE</a>
+                  </div>
+  
+                  <!-- Collect the nav links, forms, and other content for toggling -->
+                  <div class="navbar-collapse collapse  ng-scope" id="menu_mobile">
+                    <ul class="nav navbar-nav">
+                        <li id="li_inicio">
+                            <a href="">
+                                <i class="fa fa-home fa-2x"></i>
+                                Início
+                            </a>
+                        </li>
+                        <li *ngFor="let itemmenu of itemsmenu" class="dropdown">
+                            <a [routerLink]="itemmenu.routerLink" data-submenu="" data-toggle="dropdown" tabindex="0" aria-expanded="false">
+                                <i class="{{itemmenu.iclass}}"></i>
+                                {{itemmenu.label}}
+                                <i *ngIf="itemmenu.hasdownarrow" class="fa fa-caret-down"></i>                                
+                            </a>                            
+                            <ul *ngIf="itemmenu.subitemsmenu?.length > 0" class="dropdown-menu">
+                                <li *ngFor="let subitemmenu of itemmenu.subitemsmenu">
+                                    <ng-container *ngIf="subitemmenu.routerLink != ''">
+                                        <a [routerLink]="subitemmenu.routerLink" tabindex="0">{{subitemmenu.label}}</a>
+                                    </ng-container>
+                                    <ng-container *ngIf="subitemmenu.routerLink == ''">
+                                        <a tabindex="0">{{subitemmenu.label}}</a>
+                                    </ng-container>                                    
+                                    <ul *ngIf="subitemmenu.subsubitemsmenu?.length > 0" class="dropdown-menu">
+                                        <ng-container *ngFor="let subsubitemmenu of subitemmenu.subsubitemsmenu; let i = index">
+                                            <li class="{{subsubitemmenu.liclass}}">
+                                                <div *ngIf="subsubitemmenu.isheader==true then isaheader; else isnotaheader"></div>
+                                                <ng-template #isaheader>
+                                                    {{subsubitemmenu.label}}
+                                                </ng-template>
+                                                <ng-template #isnotaheader>
+                                                    <a [routerLink]="subsubitemmenu.routerLink" tabindex="0">
+                                                        <i class="{{subsubitemmenu.iclass}}"></i>  {{subsubitemmenu.label}}
+                                                        <small class="text-muted">{{subsubitemmenu.textbottom}}</small>                                            
+                                                    </a>
+                                                </ng-template>
+                                            </li>
+                                        </ng-container>
+                                    </ul>
+                                </li>                  
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a>
+                                <i class="fa fa-question fa-2x"></i> Ajuda
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a data-submenu="" data-toggle="dropdown" tabindex="0" aria-expanded="false">
+                                <i class="fa fa-user fa-2x"></i>
+                                A032550
+                                <i class="fa fa-caret-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-header">[Visibilidade: Próprio usuário]</li>
+                                <li>
+                                    <a tabindex="0">
+                                        <i class="fa fa-sign-out"></i>
+                                        Sair do sistema
+                                        <small class="text-muted">(USRIO_#110)</small>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li *ngFor="let itemaccount of itemsaccount" class="dropdown-submenu">
+                                    <a tabindex="0">
+                                        <i class="{{itemaccount.iclass}}"></i>
+                                        {{itemaccount.label}}
+                                        <small class="text-muted">{{itemaccount.textbottom}}</small>
+                                    </a>
+                                    <ul *ngIf="itemaccount.subitemsaccount?.length > 0" class="dropdown-menu">                                        
+                                        <ng-container *ngFor="let subitemaccount of itemaccount.subitemsaccount; let i = index">
+                                            <li class="{{subitemaccount.liclass}}">                                        
+                                                <div *ngIf="subitemaccount.isheader == true then isaheader; else isnotaheader"></div>
+                                                <ng-template #isaheader>
+                                                    {{subitemaccount.label}}
+                                                </ng-template>
+                                                <ng-template #isnotaheader>
+                                                    <ng-container *ngIf="subitemaccount.routerLink != ''">
+                                                        <a [routerLink]="subitemaccount.routerLink" tabindex="0">
+                                                            <i class="{{subitemaccount.iclass}}"></i> {{subitemaccount.label}}
+                                                            <small class="text-muted">{{subitemaccount.textbottom}}</small>                                            
+                                                        </a>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="subitemaccount.routerLink == ''">
+                                                        <a tabindex="0">
+                                                            <i class="{{subitemaccount.iclass}}"></i> {{subitemaccount.label}}
+                                                            <small class="text-muted">{{subitemaccount.textbottom}}</small>                                            
+                                                        </a>
+                                                    </ng-container>                                                        
+                                                    <ul *ngIf="subitemaccount.subsubitemsaccount?.length > 0" class="dropdown-menu">
+                                                        <li *ngFor="let subsubitemaccount of subitemaccount.subsubitemsaccount">                                                            
+                                                            <a [routerLink]="subsubitemaccount.routerLink" tabindex="0">
+                                                                {{subsubitemaccount.label}}
+                                                            </a>                                     
+                                                        </li>
+                                                    </ul> 
+                                                </ng-template>
+                                            </li>
+                                        </ng-container>                                    
+                                    </ul>
+                                </li>                                    
+                            </ul>
+                        </li>
+                    </ul>            
+                  </div>                  
+                </div>
+            </div>
+        </nav>        
+</div>

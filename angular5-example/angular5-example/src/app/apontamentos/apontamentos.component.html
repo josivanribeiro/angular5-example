@@ -1,0 +1,126 @@
+
+<div class="panel-heading padding-top-0 padding-bottom-0 ng-scope">
+    <div class="row ng-scope">
+        <div class="col-md-5">
+          <h4 class="painel-title ng-binding">
+            Apontamento            
+          </h4>
+        </div>
+        <div class="col-md-7 padding-top-15">
+            <div class="btn-group pull-right padding-5">                          
+                <a class="btn btn-default" [routerLink]="['/dashboard']">
+                  <i class="fa fa-arrow-left fa-fw"></i>
+                  <span class="ng-binding">Voltar</span>
+                </a>              
+                <a class="btn btn-default" [routerLink]="['add']">
+                  <i class="fa fa-plus fa-fw"></i>
+                  <span class="ng-binding">Incluir</span>
+                </a>              
+                <a class="btn btn-default" (click)="exportToCsv()">
+                    <i class="fa fa-file-text fa-fw"></i>
+                    Exportar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>  
+
+<div class="panel-body ng-scope">
+
+  <div class="row ng-scope">    
+    <div class="col-md-6 pull-left margin-bottom-5 padding-left-0">    
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-filter"></i></span>
+        <input placeholder="Filtrar registros (Pesquisa pelo campo nome)" (keyup)="onKeyName($event);setUpperCase($event)" class="form-control ng-pristine ng-untouched ng-valid ng-empty" type="text" name="search" [(ngModel)]="nomeFilter">
+    </div>      
+    </div>
+    <div class="col-md-6 pull-right">
+        Situação:        
+        <ng-container *ngFor="let situacao of situacoes">
+            <input type="radio" name="chkSituacao" (click)="performSearchBySituacao(situacao.value)" [checked]="situacao.value == selectedSituacao.value" value={{situacao.value}}>
+            <label>{{situacao.description}}</label>
+        </ng-container>
+    </div>    
+  </div>  
+  
+  <div class="ng-scope margin-top-10">
+      <div class="row">
+          <div class="table-responsive">
+              <table>
+                  <thead>
+                      <tr>
+                          <th scope="col" class="pointer" (click)="performOrderedSearchByFilter('nuApontamento')" style="white-space: nowrap;">
+                              Código
+                              <span [ngClass]="selectedDirection == 'DESC' ? 'fa fa-long-arrow-up' : 'fa fa-long-arrow-down'" *ngIf="selectedOrderBy == 'nuApontamento'"></span>
+                          </th>
+                          <th scope="col" class="text-left col-md-5 pointer" (click)="performOrderedSearchByFilter('noApontamento')">
+                              Nome
+                              <span [ngClass]="selectedDirection == 'DESC' ? 'fa fa-long-arrow-up' : 'fa fa-long-arrow-down'" *ngIf="selectedOrderBy == 'noApontamento'"></span>
+                          </th>
+                          <th scope="col" class="text-left col-md-4 pointer" (click)="performOrderedSearchByFilter('deApontamento')">
+                              Descrição
+                              <span [ngClass]="selectedDirection == 'DESC' ? 'fa fa-long-arrow-up' : 'fa fa-long-arrow-down'" *ngIf="selectedOrderBy == 'deApontamento'"></span>
+                          </th>
+                          <th scope="col" class="pointer" (click)="performOrderedSearchByFilter('icAtivo')" style="white-space: nowrap;">
+                              Situação
+                              <span [ngClass]="selectedDirection == 'DESC' ? 'fa fa-long-arrow-up' : 'fa fa-long-arrow-down'" *ngIf="selectedOrderBy == 'icAtivo'"></span>
+                          </th>
+                          <th scope="col" class="text-left">
+                              Ação
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="ng-scope" *ngFor="let content of apontamento?.content ">
+                        <td data-label="Código" class="text-center ng-binding">
+                            {{content.nuApontamento}}
+                        </td>
+                        <td data-label="Nome" class="text-left ng-binding">
+                            {{content.noApontamento}}
+                        </td>
+                        <td data-label="Descrição" class="text-left ng-binding">
+                            {{content.deApontamento}}
+                        </td>
+                        <td data-label="Situação" class="ng-binding">
+                            <ng-container *ngIf="content.icAtivo">
+                                Ativo
+                            </ng-container>
+                            <ng-container *ngIf="!content.icAtivo">
+                                Inativo
+                            </ng-container>                      
+                        </td>
+                        <td data-label="Ação">
+                            <div class="input-group">
+                                <a [routerLink]="['details', content.nuApontamento]" class="btn btn-default btn-action-list">
+                                    <i class="fa fa-folder-open-o"></i>
+                                    Exibir
+                                </a>
+                            </div>
+                        </td>                      
+                    </tr>      
+                  </tbody>
+              </table>
+              
+              <div class="pagination" style="width:100%;">
+                    <label>Exibindo {{pagination.getInitialRowNumber()}} até {{pagination.getFinalRowNumber()}} de {{pagination.totalRows}} registros</label><br/><br/>
+                    <div class="pull-left" style="width: 33%">
+                        <button class="btn btn-default" [disabled] ="pagination.currentPage == 1" (click)="performSearchByFilter(1)">Primeiro</button>
+                        <button class="btn btn-default" [disabled] ="pagination.currentPage == 1" (click)="performSearchByFilter(pagination.currentPage - 1)">Anterior</button>
+                    </div>
+                    <div class="pull-left" style="width: 33%">
+                        <div class="center-block-w200">
+                            <span>Página <input #txtCurrentPage type="text" value="{{pagination.currentPage}}" maxlength="5" style="width: 50px;" /> / {{ pagination.totalPages }}</span>
+                            <button class="btn btn-default" (click)="performSearchByFilter(txtCurrentPage.value)">Ir</button>
+                        </div>
+                    </div>
+                    <div class="pull-right" style="width: 33%">
+                        <button class="btn btn-default pull-right" [disabled] ="pagination.currentPage == pagination.totalPages" (click) ="performSearchByFilter(pagination.totalPages)">Último</button>
+                        <button class="btn btn-default pull-right" style="margin-right: 4px;" [disabled] ="pagination.currentPage >= pagination.totalPages" (click) ="performSearchByFilter(pagination.currentPage + 1)">Próximo</button>                        
+                    </div>
+              </div>
+
+          </div>
+      </div>
+  </div>
+
+</div>

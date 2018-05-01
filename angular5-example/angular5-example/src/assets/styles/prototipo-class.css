@@ -1,0 +1,277 @@
+.background-bbbbbb {
+    background-color: #bbbbbb;
+    /*padding: 3px;*/
+}
+.background-eeeeee {
+    background-color: #eeeeee;
+    /*padding: 3px;*/
+}
+.background-efefef {
+    background-color: #efefef;
+    /*padding: 3px;*/
+}
+
+.bg-primary {
+  background-color: #256CB8;
+}
+
+#wMenub > .breadcrumb > li > a.menubitem,
+#wMenub > .breadcrumb > li > a.menubitem:hover {
+    color: #7787A6;
+    cursor: default;
+    text-decoration: none;
+}
+
+.etiqueta-card1
+{
+  padding: 5px;
+  height: 222px !important;
+}
+.etiqueta-card1 > img {
+  width  : 200px;
+  height : 100px;
+}
+
+.etiqueta-card1 > .list-group,
+.etiqueta-card1 > .list-group-item {
+  text-align: center;
+  width: 100% !important;
+}
+
+.etiqueta-card2
+{
+  padding: 5px;
+  height: 325px !important;
+}
+.etiqueta-card2 > img {
+  width  : 150px;
+  height : 200px;
+}
+
+.col-centered {
+    margin: 0 auto;
+    float: none;
+}
+
+.margin-0 {
+    margin: 0px !important;
+}
+.margin-top-0 {
+    margin-top: 0px;
+}
+.margin-top-5 {
+  margin-top: 5px;
+}
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+.margin-top-25 {
+    margin-top: 25px;
+}
+.margin-top-50 {
+    margin-top: 50px;
+}
+.margin-top-login {
+    margin-top: 150px;
+}
+
+.margin-bottom-0 {
+    margin-bottom: 0px;
+}
+.margin-bottom-1 {
+    margin-bottom: 1px;
+}
+
+.margin-bottom-5 {
+    margin-bottom: 5px;
+}
+
+.padding-0 {
+    padding: 0px;
+}
+
+.padding-0-h {btn
+  padding-left: 0;
+  padding-right: 0;
+}
+.padding-0-v {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.padding-1 {
+    padding: 1px;
+}
+.padding-2 {
+    padding: 2px;
+}
+
+.padding-3 {
+    padding: 3px;
+}
+.padding-5 {
+    padding: 5px;
+}
+.padding-10 {
+    padding: 10px;
+}
+
+.padding-top-0 {
+    padding-top: 0px;
+}
+.padding-top-5 {
+    padding-top: 5px;
+}
+.padding-top-10 {
+    padding-top: 10px;
+}
+.padding-top-15 {
+    padding-top: 15px;
+}
+
+.padding-bottom-0 {
+    padding-bottom: 0px;
+}
+.padding-bottom-5 {
+    padding-bottom: 5px;
+}
+.padding-left-0 {
+    padding-left: 0px;
+}
+
+.padding-right-0 {
+    padding-right: 0px;
+}
+
+.no-border {
+    border: 0px;
+}
+.no-text-decoration,
+.no-text-decoration:hover
+{
+    text-decoration: none;
+}
+
+.min-height-100
+{
+  min-height: 100px;
+}
+
+.panel-login
+{
+  min-height: 400px !important;
+}
+.panel-grafico
+{
+    height: 250px !important;
+}
+
+.envelope {
+  background-image: url("/assets/images/envelope_pardo_topo.png");
+  background-repeat: no-repeat;
+  background-position: left top;
+  /*width: 80%;*/
+  height: 350px;
+}
+
+
+.text-centered {
+    text-align:center;
+}
+.text-left {
+    text-align:left;
+}
+
+/*
+.clearfix {
+    clear: both;
+}
+.centered {
+    margin: 0 auto;
+}
+.no-float {
+    float: none;
+}
+.no-border {
+    border: 0px;
+}
+
+.nsu {
+    font-size: 80%;
+    color: #BBBBBB;
+}
+
+.disp {
+    margin-right: 10px;
+    border-color: #ccc;
+}
+.disp-d5d5d5,
+table > tbody > tr.disp-d5d5d5,
+table > tbody > tr > td.disp-d5d5d5 {
+    background-color: #D5D5D5;
+    border-color: #ccc;
+    color: #333;
+    border-radius: 0px;
+    text-align:center;
+}
+
+.disp-default,
+table > tbody > tr.disp-default,
+table > tbody > tr > td.disp-default {
+    background-color: #fff;
+    border-color: #ccc;
+    color: #333;
+    border-radius: 0px;
+    text-align:center;
+}
+
+.disp-primary,
+table > tbody > tr.disp-primary,
+table > tbody > tr > td.disp-primary {
+    background-color: #337ab7;
+    border-color: #ccc;
+    color: #fff;
+    border-radius: 0px;
+    text-align:center;
+}
+.disp-success,
+table > tbody > tr.disp-success,
+table > tbody > tr > td.disp-success {
+    background-color: #5cb85c;
+    border-color: #ccc;
+    color: #fff;
+    border-radius: 0px;
+    text-align:center;
+}
+
+.disp-info,
+table > tbody > tr.disp-info,
+table > tbody > tr > td.disp-info {
+    background-color: #5bc0de;
+    border-color: #ccc;
+    color: #fff;
+    border-radius: 0px;
+    text-align:center;
+}
+
+.disp-warning,
+table > tbody > tr.disp-warning,
+table > tbody > tr > td.disp-warning {
+    background-color: #f0ad4e;
+    border-color: #ccc;
+    color: #fff;
+    border-radius: 0px;
+    text-align:center;
+}
+
+.disp-danger,
+table > tbody > tr.disp-danger,
+table > tbody > tr > td.disp-danger {
+    background-color: #d9534f;
+    border-color: #ccc;
+    color: #fff;
+    border-radius: 0px;
+    text-align:center;
+}
+*/
